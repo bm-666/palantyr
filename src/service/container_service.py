@@ -8,3 +8,6 @@ class DockerService:
 
     async def get(self) -> list[ContainerSchema]:
         return await self.repo.find_all()
+
+    async def get_by_id(self, container_id: str) -> ContainerSchema:
+        return await self.repo.find_by_id(container_id)

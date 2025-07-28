@@ -1,19 +1,16 @@
-from pydantic import BaseModel
-from enum import StrEnum
+from datetime import datetime
 
-class ContainerStatusEnum(StrEnum):
-    CREATED = "created"
-    RESTARTING = "restarting"
-    RUNNING = "running"
-    REMOVING = "removing"
-    PAUSED = "paused"
-    EXITED = "exited"
-    DEAD = "dead"
+from pydantic import BaseModel
+
+from src.enums.container_status_enum import ContainerStatusEnum
+
 
 class BaseContainerSchema(BaseModel):
     container_id: str
     name: str | None = None
     status: ContainerStatusEnum
+    started_at: datetime | None = None
+    finished_at: datetime | None = None
 
 class ContainerSchema(BaseContainerSchema):
     ...
