@@ -67,6 +67,9 @@ class ContainersRepo:
         return ContainerSchema(
             container_id=container_id,
             name=data["Name"].lstrip("/"),
-            status=data["State"]["Status"]
+            status=data["State"]["Status"],
+            started_at=data["State"]["StartedAt"],
+            finished_at=data["State"]["FinishedAt"],
+            created_at=data["Created"]
 
         )

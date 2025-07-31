@@ -1,10 +1,13 @@
-from src.service.container_service import DockerService
-import asyncio
+from src.api.containers.routes.containers_route import containers_route
+import uvicorn
+from fastapi import FastAPI
 
-
-async def  main():
+"""async def  main():
     dock = DockerService()
     result = await dock.get()
-    print(result)
+    print(result)"""
+
+app =  FastAPI()
+app.include_router(containers_route)
 if __name__ == "__main__":
-    asyncio.run(main())
+    uvicorn.run(app)
