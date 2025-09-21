@@ -14,7 +14,8 @@ def format_datetime(dt: datetime) -> str:
 
 class BaseContainerSchema(BaseModel):
     container_id: str
-    name: str | None = None
+    name: str
+    image: str
     status: ContainerStatusEnum
     created_at: datetime | None = None
     started_at: datetime | None = None

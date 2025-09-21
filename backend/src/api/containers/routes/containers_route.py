@@ -32,6 +32,12 @@ async def get_container_by_id(
 
 ):
     containers_service = await manager.get_container_api_service()
-    print(container_id)
+
     result = await containers_service.get_container(container_id)
     return {"container": result}
+@containers_route.post("/{container_id}/action")
+async def start(
+    container_id: ContainerID,
+    manager: ServicesManager = Depends(get_services_manager)):
+
+    pass

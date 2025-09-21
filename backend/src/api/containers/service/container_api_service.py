@@ -11,3 +11,6 @@ class ContainerApiService:
 
     async def get_container(self, container_id: str) -> ContainerSchema:
         return await self.service.get_by_id(container_id)
+
+    async def action(self, con):
+        pass

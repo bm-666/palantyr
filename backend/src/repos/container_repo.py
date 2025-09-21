@@ -1,5 +1,7 @@
 import asyncio
 from aiodocker import Docker
+
+from src.enums.container_actions import ContainerAction
 from src.schemas.container_schema import ContainerSchema
 
 class ContainersRepo:
@@ -53,6 +55,14 @@ class ContainersRepo:
         data = await container.show()
         return self._container_from_dict(container_id, data)
 
+
+
+    async def execute_action(self, container_id: str, action: ContainerAction):
+        container = await self.docker.containers.get(container_id)
+        await container.start()
+        method = getattr(container, action)
+        await method()
+
     def _container_from_dict(self, container_id: str, data: dict) -> ContainerSchema:
         """
         Convert a dictionary of container information from the Docker API to a ContainerSchema object.
@@ -64,12 +74,15 @@ class ContainersRepo:
         Returns:
             ContainerSchema: The container schema object.
         """
+
         return ContainerSchema(
             container_id=container_id,
             name=data["Name"].lstrip("/"),
+            image=data["Config"]["Image"],
             status=data["State"]["Status"],
             started_at=data["State"]["StartedAt"],
             finished_at=data["State"]["FinishedAt"],
             created_at=data["Created"]
+
 
         )
