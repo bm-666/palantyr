@@ -59,7 +59,6 @@ class ContainersRepo:
 
     async def execute_action(self, container_id: str, action: ContainerAction):
         container = await self.docker.containers.get(container_id)
-        await container.start()
         method = getattr(container, action)
         await method()
 

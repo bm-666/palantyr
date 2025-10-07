@@ -17,7 +17,16 @@ class DockerService:
         await self.repo.execute_action(container_id, action)
 
     async def start(self, container_id: str):
-        await self.perform_action(container_id, ContainerAction.START)
+        await self.repo.execute_action(container_id, ContainerAction.START)
 
     async def stop(self, container_id: str):
-        await self.perform_action(container_id, ContainerAction.STOP)
+        await self.repo.execute_action(container_id, ContainerAction.STOP)
+
+    async def restart(self, container_id: str):
+        await self.repo.execute_action(container_id, ContainerAction.RESTART)
+
+    async def pause(self, container_id: str):
+        await self.repo.execute_action(container_id, ContainerAction.PAUSE)
+
+    async def unpause(self, container_id: str):
+        await self.repo.execute_action(container_id, ContainerAction.UNPAUSE)

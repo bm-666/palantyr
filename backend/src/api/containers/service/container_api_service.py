@@ -20,4 +20,9 @@ class ContainerApiService:
         elif action ==  ContainerAction.STOP and _container.status == ContainerStatusEnum.RUNNING:
             await self.service.stop(container_id)
 
+        elif action == ContainerAction.PAUSE and _container.status == ContainerStatusEnum.RUNNING:
+            await self.service.pause(container_id)
+
+        elif action == ContainerAction.UNPAUSE:
+            await self.service.unpause(container_id)
 

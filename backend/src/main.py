@@ -19,4 +19,4 @@ app.add_middleware(
     allow_headers=["Authorization", "Content-Type"],
 )
 if __name__ == "__main__":
-    uvicorn.run(app)
+    uvicorn.run(app, port=8001)

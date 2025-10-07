@@ -6,5 +6,6 @@ class ContainerStatusEnum(StrEnum):
     RUNNING = "running"
     REMOVING = "removing"
     PAUSED = "paused"
+
     EXITED = "exited"
     DEAD = "dead"
