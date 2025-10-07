@@ -4,7 +4,7 @@ from src.repos.container_repo import ContainersRepo
 from src.enums.container_actions import ContainerAction
 
 class DockerService:
-    def __init__(self, socket: str | None = None):
+    def  __init__(self, socket: str | None = None):
         self.repo = ContainersRepo()
 
     async def get(self) -> list[ContainerSchema]:
@@ -15,3 +15,9 @@ class DockerService:
 
     async def perform_action(self, container_id: str, action: ContainerAction):
         await self.repo.execute_action(container_id, action)
+
+    async def start(self, container_id: str):
+        await self.perform_action(container_id, ContainerAction.START)
+
+    async def stop(self, container_id: str):
+        await self.perform_action(container_id, ContainerAction.STOP)
