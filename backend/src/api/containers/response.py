@@ -7,3 +7,6 @@ class ContainersResponse(BaseModel):
 
 class ContainerResponse(BaseModel):
     container: ContainerSchema
+
+class ContainerActionResultResponse(BaseModel):
+    status: str

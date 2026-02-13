@@ -41,9 +41,11 @@ async def get_container_by_id(
 @containers_route.post("/{container_id}/action")
 async def action(
     container_id: ContainerID,
-    action: ContainerActionRequest,
+    request: ContainerActionRequest,
     manager: ServicesManager = Depends(get_services_manager),
 
 ):
+    print(f"Container ID --> {container_id}")
     container_service = await manager.get_container_api_service()
-    await container_service.perform_action(container_id, action.action)
+    await container_service.perform_action(container_id, request)
+    return

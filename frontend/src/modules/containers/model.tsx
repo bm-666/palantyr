@@ -15,3 +15,14 @@ export interface ContainerSchema {
     startedAt?: string;
     finishedAt?: string;
 }
+export type UIContainerStatus = "running" | "stopped" | "paused" ;
+
+
+
+export const DOCKER_TO_UI_STATUS: Record<ContainerStatusEnum, UIContainerStatus> = {
+    created: "stopped",
+    exited: "stopped",
+    dead: "stopped",
+    running: "running",
+    paused: "paused"
+}
